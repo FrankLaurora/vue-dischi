@@ -22,6 +22,6 @@ export default {
 @import './assets/style/common.scss';
 
 #app {
-
+  color: #fff;
 }
 </style>

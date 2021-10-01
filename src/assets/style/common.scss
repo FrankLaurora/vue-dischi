@@ -1,3 +1,6 @@
+// google font
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 // reset
 * {
     margin: 0;
@@ -7,6 +10,10 @@
 
 .container {
     display: flex;
-    width: 60%;
+    width: 65%;
     margin: auto;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
 }
