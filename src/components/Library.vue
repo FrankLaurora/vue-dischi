@@ -23,14 +23,16 @@ export default {
 
     data() {
         return {
-            albi:[]
+            albi: [],
+
+            genresList: []
         }
     },
 
     computed: {
         filteredAlbi() {
             if(this.genre != "") {
-                return this.albi.filter(album => album.genre.toLowerCase() == this.genre)
+                return this.albi.filter(album => album.genre.toLowerCase() == this.genre.toLowerCase())
             }
 
             return this.albi;
@@ -41,6 +43,14 @@ export default {
         axios.get("https://flynn.boolean.careers/exercises/api/array/music")
             .then( (response) => {
                 this.albi = response.data.response;
+
+                this.albi.forEach(album => {
+                    if(!this.genresList.includes(album.genre)) {
+                        this.genresList.push(album.genre)
+                    }
+                });
+
+                this.$emit('getGenres', this.genresList);
             }
         )
     }
@@ -53,6 +63,8 @@ export default {
     .library {
         background-color: #1E2D3B;
         padding-block: 5rem;
+        height: calc(100vh - 70px);
+        overflow-y: auto;
 
         .container {
             flex-wrap: wrap;
