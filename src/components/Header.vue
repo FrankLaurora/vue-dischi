@@ -1,10 +1,15 @@
 <template>
     <header>
         <img :src="image" alt="logo">
-        <select name="genre_filter" id="genre_filter" v-model="selected_genre" @change="$emit('genreFilter', selected_genre)">
-            <option value="" selected>Seleziona un genere</option>
-            <option v-for="(genre, index) in genres" :key="index" :value="genre">{{genre}}</option>
-        </select>
+        <form>
+            <input type="text" v-model="searchInput" placeholder="Cerca un artista">
+            <button @click.prevent="$emit('searchByArtist', searchInput)">Cerca</button>
+            <select name="genre_filter" id="genre_filter" v-model="selected_genre" @change="$emit('genreFilter', selected_genre)">
+                <option value="" selected>Seleziona un genere</option>
+                <option v-for="(genre, index) in genres" :key="index" :value="genre">{{genre}}</option>
+            </select>
+
+        </form>
     </header>
 </template>
 
@@ -16,7 +21,9 @@ export default {
 
     data() {
         return {
-            selected_genre: ""
+            selected_genre: "",
+
+            searchInput: ""
         }
     }
 }
@@ -37,12 +44,22 @@ export default {
             width: 3.5rem;
         }
 
-        select {
+        select, input, button {
             padding: 0.5rem 1rem;
             border-radius: 5px;
+            border: none;
             font-size: 1rem;
             font-weight: bold;
             outline: none;
+        }
+
+        input, button {
+            margin-right: 1rem;
+        }
+
+        button {
+            background-color: #2abe59;
+            color: $secondary-color;
         }
     }
 </style>

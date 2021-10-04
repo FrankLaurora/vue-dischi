@@ -18,7 +18,9 @@ export default {
     },
 
     props: {
-        genre: String
+        genre: String,
+
+        artist: String
     },
 
     data() {
@@ -31,7 +33,11 @@ export default {
 
     computed: {
         filteredAlbi() {
-            if(this.genre != "") {
+            if(this.artist != "") {
+                return this.albi.filter(album => album.author.toLowerCase() == this.artist.toLowerCase())
+            }
+
+            if(this.genre != "" || this.artist != "") {
                 return this.albi.filter(album => album.genre.toLowerCase() == this.genre.toLowerCase())
             }
 

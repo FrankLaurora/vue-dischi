@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header :image="require('./assets/img/spotify-logo.png')" @genreFilter="showGenre" :genres="genresList"/>
-    <Library :genre="selected_genre" @getGenres="getGenres"/>
+    <Header :image="require('./assets/img/spotify-logo.png')" @genreFilter="showGenre" :genres="genresList" @searchByArtist="showArtist"/>
+    <Library :genre="selectedGenre" :artist="searchArtist" @getGenres="getGenres"/>
   </div>
 </template>
 
@@ -18,19 +18,25 @@ export default {
 
   data() {
     return {
-      selected_genre : "",
+      selectedGenre: "",
 
-      genresList: []
+      genresList: [],
+
+      searchArtist: ""
     }
   },
 
   methods: {
     showGenre(value) {
-      this.selected_genre = value;
+      this.selectedGenre = value;
     },
 
     getGenres(array) {
       this.genresList = array
+    },
+
+    showArtist(text) {
+      this.searchArtist = text.toLowerCase()
     }
   }
 }
