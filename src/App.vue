@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header :image="require('./assets/img/spotify-logo.png')"/>
-    <Library/>
+    <Header :image="require('./assets/img/spotify-logo.png')" @genreFilter="showGenre"/>
+    <Library :genre="selected_genre"/>
   </div>
 </template>
 
@@ -14,6 +14,18 @@ export default {
   components: {
     Header,
     Library
+  },
+
+  data() {
+    return {
+      selected_genre : ""
+    }
+  },
+
+  methods: {
+    showGenre(value) {
+      this.selected_genre = value;
+    }
   }
 }
 </script>

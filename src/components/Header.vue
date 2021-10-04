@@ -1,6 +1,13 @@
 <template>
     <header>
         <img :src="image" alt="logo">
+        <select name="genre_filter" id="genre_filter" v-model="selected_genre" @change="$emit('genreFilter', selected_genre)">
+            <option value="" selected>Seleziona un genere</option>
+            <option value="jazz">Jazz</option>
+            <option value="metal">Metal</option>
+            <option value="pop">Pop</option>
+            <option value="rock">Rock</option>
+        </select>
     </header>
 </template>
 
@@ -8,7 +15,17 @@
 export default {
     name: 'Header',
 
-    props: ['image']
+    props: ['image'],
+
+    data() {
+        return {
+            selected_genre: ""
+        }
+    },
+
+    methods: {
+
+    }
 }
 </script>
 
@@ -16,12 +33,23 @@ export default {
 @import '../assets/style/variables.scss';
 
     header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
         background-color: $secondary-color;
+        padding-inline: 22px;
 
         img {
-            width: 3rem;
-            margin-inline: 22px;
-            margin-block: 11px;
+            width: 3.5rem;
+        }
+
+        select {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            outline: none;
         }
     }
 </style>
