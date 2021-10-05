@@ -33,15 +33,17 @@ export default {
 
     computed: {
         filteredAlbi() {
-            if(this.artist != "") {
-                return this.albi.filter(album => album.author.toLowerCase() == this.artist.toLowerCase())
-            }
+            if(this.artist != "" || this.genre != "") {
+                const artistGenreFilter = this.albi.filter(album => {
+                    if(album.author.toLowerCase().includes(this.artist.toLowerCase()) && album.genre.toLowerCase().includes(this.genre.toLowerCase())) {
+                        return true
+                    }
+                });
 
-            if(this.genre != "" || this.artist != "") {
-                return this.albi.filter(album => album.genre.toLowerCase() == this.genre.toLowerCase())
+                return artistGenreFilter;
+            } else {
+                return this.albi
             }
-
-            return this.albi;
         }
     },
 

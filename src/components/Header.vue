@@ -2,7 +2,7 @@
     <header>
         <img :src="image" alt="logo">
         <form>
-            <input type="text" v-model="searchInput" placeholder="Cerca un artista">
+            <input type="text" v-model="searchInput" placeholder="Cerca un artista" @keyup.enter.prevent="$emit('searchByArtist', searchInput)">
             <button @click.prevent="$emit('searchByArtist', searchInput)">Cerca</button>
             <select name="genre_filter" id="genre_filter" v-model="selected_genre" @change="$emit('genreFilter', selected_genre)">
                 <option value="" selected>Seleziona un genere</option>
